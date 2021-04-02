@@ -1,0 +1,11 @@
+Save all executing code in a separate text file with an arbitrary name, such as foo.sh
+Add #!/bin/sh as the first line in foo.sh, executing it via sudo foo.sh to check for errors
+In /etc/rc.local, place the full pathname to foo.sh, prefaced with sh, before exit 0:
+sh '/path/to/your/script/foo.sh'
+Verify the first line in /etc/rc.local is #!/bin/sh -e
+Ensure /etc/rc.local is executable:
+sudo chown root /etc/rc.local
+sudo chmod 755 /etc/rc.local
+Verify everything works fine:
+sudo /etc/init.d/rc.local start
+Reboot to test
